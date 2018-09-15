@@ -5,15 +5,27 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    
   </head>
+<body>
 
-  <body>
+      <div class="container-fluid container-background">
+        
+        <div class="container">
+         <ul class="nav">
+           <li class="nav-item">
+            <%= link_to "Главная", root_path %>,
+           </li>
 
-  <%= link_to "Главная", root_path %>,
-  <%= link_to "Всего хорошего!", pages_about_path %>
+           <li class="nav-item">
+            <%= link_to "О нас", pages_about_path %>
+           </li>
+         </ul>
+        <%= yield %>
+       </div>
 
-    <%= yield %>
-  </body>
-</html>
+     <body>
+  </html>
