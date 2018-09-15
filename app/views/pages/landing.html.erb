@@ -1,16 +1,17 @@
-<div class="jumbotron jumbotron-landing">
+<% if user_signed_in? %>
 
-  <h1 class="display-4">Делитесь своими эмоциями!</h1>
-   <p class="lead">Размещайте свои фотографии и подписывайтесь на публикации ваших друзей.</p>
+   <%else%>
 
-  <hr class="my-4">
-   <a class="btn btn-primary" href="#" role="button">Создать аккаунт</a>
-   <a class="btn btn-warning" href="#" role="button">Войти</a>
+     <div class="jumbotron jumbotron-landing">
+        <h1 class="display-4">Делитесь своими эмоциями!</h1>
+        <p class="lead">Размещайте свои фотографии и подписывайтесь на публикации ваших друзей.</p>
+        <hr class="my-4">
 
-   
+        <%= link_to "Создать аккаунт", new_user_registration_path, class: "btn btn-warning" %>
+        <%= link_to "Войти", new_user_session_path, class: "btn btn-primary" %>
+     </div>
 
-</div>
+   <p class="main_part">Это мое новое Rails приложение версии 5.2.1</p>
 
-
-<p class="main_part">Это мое новое Rails приложение версии 5.2.1</p>
+<%end%>
 
