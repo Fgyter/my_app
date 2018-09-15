@@ -5,36 +5,30 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    
   </head>
 <body>
+     
+     <% if user_signed_in? %>
+      <div class="container-fluid container-bar">
 
-      <div class="container-fluid container-background">
-        
+      <%else%>
+      <div class="container-fluid container-background container-bar">
+      <%end%>
+
+      <%= render "layouts/navigation" %>
         <div class="container">
-         <ul class="nav">
-           <li class="nav-item">
-            <%= link_to "Изображения", root_path, class:'nav-landing' %>,
-           </li>
 
-           <li class="nav-item">
-            <%= link_to "О проекте", pages_about_path, class:'nav-landing' %>
-           </li>
-        <% if user_signed_in? %>
-           <li class="nav-item">
-            <%= link_to "Выйти", destroy_user_session_path, method: :delete, class:'nav-landing' %>
-           </li>
-         <%end%>
-         </ul>
+      
+
+
          
           <p class="notice"><%= notice %></p>
           <p class="alert"><%= alert %></p>
 
         <%= yield %>
        </div>
-
      <body>
   </html>
