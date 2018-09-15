@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Comfortaa");
 $display4-size: 2.5rem;/*размер шрифта*/
 $jumbotron-bg: rgba(255,255,255, 0.1);/* цвет джимбатрона(квадратная херня по среди экрана)*/
+$card-cap-bg:  rgba(255,255,255, 0.4);/* цвет заголовка - входной карточки*/
+$card-bg: rgba(255,255,255, 0.6);/* цвет фона карточки*/
 
 
 
@@ -17,6 +19,12 @@ $jumbotron-bg: rgba(255,255,255, 0.1);/* цвет джимбатрона(ква�
     background-size: cover;
     background-image: url(image_path('wowhorde.jpg'));
     }
+
+.devise-form {
+	width: 50%;
+	margin-left:auto;
+    margin-right:auto;
+}
 
 
 /*навбар от края до края*/
@@ -55,7 +63,7 @@ $text-color: blue;
     margin-right:auto;
  }*/
 
-/* цвет размер кнопки*/
+/* цвет, размер кнопки
  .btn-primary {
     color: #2f9987;
     background-color: red;

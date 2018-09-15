@@ -10,15 +10,16 @@
   <div class="container">
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-   <%= link_to "Изображения", root_path, class:'navbar-brand text-logotipe' %>
+   <%= link_to "Главная страница", root_path, class:'navbar-brand text-logotipe' %>
    <!--кнопки ссылки
 -->
    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
     
 
       <li class="nav-item">
-       <%= link_to "О проекте", pages_about_path, class:'nav-link' %>      
+       <%= link_to current_user.email, edit_user_registration_path, class:'nav-link' %>      
       </li>
+      <!--кнопка изменения аккаунта, current_user.email = показывает мыло вошедшего пользователя -->
       <li class="nav-item">
        <%= link_to "Выйти", destroy_user_session_path, method: :delete, class:'nav-link' %>
       </li>
@@ -46,7 +47,7 @@
   <div class="container">
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-   <%= link_to "Изображения", root_path, class:'navbar-brand text-logotipe landing-logotipe' %>
+   <%= link_to "Главная страница", root_path, class:'navbar-brand text-logotipe landing-logotipe' %>
    <!--кнопки ссылки
 -->
    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
