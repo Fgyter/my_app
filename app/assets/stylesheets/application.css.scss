@@ -1,4 +1,14 @@
+$display4-size: 2.5rem;
+$jumbotron-bg: rgba(255,255,255, 0.2);
+
+
+
+
+
+
+
 @import "bootstrap";
+
 
 .container-background {
     width: 100%;
@@ -19,12 +29,29 @@ $text-color: blue;
 
  }
 
- .display-4 {
- 	color: $text-color;
-
+ .main_part{
+ 	color: $yellow;
  }
 
- .conclusion {
- 	color: $text-color;
-
+ .jumbotron-landing{
+ 	width:50%;
+ 	margin-left:auto;
+    margin-right:auto;
  }
+
+ .btn-primary {
+    color: #2f9987;
+    background-color: red;
+    border-color: red;
+}
+
+.nav-landing:link,
+.nav-landing:visited {
+color: #2f9987;
+}
+
+.nav-landing:hover,
+.nav-landing:active {
+color: #59ABE3;
+text-decoration: none;
+}
