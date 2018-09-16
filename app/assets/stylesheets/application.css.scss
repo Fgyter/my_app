@@ -19,47 +19,52 @@ $card-bg: rgba(255,255,255, 0.6);/* цвет фона карточки*/
     background-size: cover;
     background-image: url(image_path('wowhorde.jpg'));
     }
-
+/* форма входа и регистрации*/
 .devise-form {
-	width: 50%;
-	margin-left:auto;
+    width: 50%;
+    margin-left:auto;
     margin-right:auto;
 }
 
+.photo-form {
+    width: 50%;
+    margin-left:auto;
+    margin-right:auto;
+}
 
 /*навбар от края до края*/
 .container-bar{
 
-	padding-right: 0;
+    padding-right: 0;
     padding-left: 0;
 
 }
 
 .bar-image {
-	background-color: rgba(255,255,255, 0.1);
+    background-color: rgba(255,255,255, 0.1);
 }
  
  /*цвета цекста*/
 $text-color: blue;
 
  .title {
- 	color: $text-color;
+    color: $text-color;
 
  }
 
  .introduction{
- 	color: $text-color;
+    color: $text-color;
 
  }
 
  .main_part{
- 	color: $yellow;
+    color: $yellow;
  }
 
 /*размер джимбатрона
  .jumbotron-landing{
- 	width:50%;
- 	margin-left:auto;
+    width:50%;
+    margin-left:auto;
     margin-right:auto;
  }*/
 
@@ -82,7 +87,7 @@ text-decoration: none;
 }
 /* настройка ссылки Изображение*/
 .text-logotipe{
-	font-family: 'Comfortaa', cursive;
+    font-family: 'Comfortaa', cursive;
 }
 
 .landing-logotipe {
