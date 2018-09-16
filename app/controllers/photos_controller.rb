@@ -25,7 +25,7 @@ class PhotosController < ApplicationController
   def create # создание-добавление новой фото в базу данных
     @photo = Photo.new(photo_params)
       if @photo.save
-        redirect_to @photo, notice: 'Photo was successfully created.'
+        redirect_to @photo, notice: 'Фото создано'
       else
         render :new
       end
@@ -33,7 +33,7 @@ class PhotosController < ApplicationController
 
   def update # обновление
       if @photo.update(photo_params)
-        redirect_to @photo, notice: 'Photo was successfully updated.'
+        redirect_to @photo, notice: 'Фото обновлено'
       else
         render :edit
       end
@@ -41,7 +41,7 @@ class PhotosController < ApplicationController
 
   def destroy # удаление
     @photo.destroy
-      redirect_to photos_url, notice: 'Photo was successfully destroyed.' 
+      redirect_to photos_url, notice: 'Фото удалено' 
   end
 
   private
