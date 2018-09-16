@@ -48,10 +48,13 @@
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
    <%= link_to "Главная страница", root_path, class:'navbar-brand text-logotipe landing-logotipe' %>
-   <!--кнопки ссылки
+   <!--кнопки ссылки mr-auto mt-2 mt-lg-0
 -->
    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-    
+
+      <li class="nav-item">
+       <%= link_to "Фотографии", photos_path, class:'nav-link' %>      
+      </li>
    
       <li class="nav-item">
        <%= link_to "О проекте", pages_about_path, class:'nav-link' %>      

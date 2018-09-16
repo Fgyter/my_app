@@ -1,7 +1,6 @@
 class PhotosController < ApplicationController
   before_action :set_photo, only: [:show, :edit, :update, :destroy]
-
-# действия контроллера 7 - CRUD 
+# действия контроллера 7 - CRUD   :new, 
 # Create(Сздание) - new + create
 # Read(Просмотр) - show + index
 # Update(обновление) - edit + update
@@ -14,8 +13,8 @@ class PhotosController < ApplicationController
   def show #просмотр (один экземпляр)
   end
 
-  def new # создание новой фото
-    @photo = Photo.new
+  def new # создание новой фото current_user.photos.build
+    @photo = current_user.photos.build
   end
 
   def edit # обновление - подгружает форму редакриторования
@@ -23,7 +22,7 @@ class PhotosController < ApplicationController
 
 
   def create # создание-добавление новой фото в базу данных
-    @photo = Photo.new(photo_params)
+    @photo = current_user.photos.build(photo_params)
       if @photo.save
         redirect_to @photo, notice: 'Фото создано'
       else
