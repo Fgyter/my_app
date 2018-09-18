@@ -3,11 +3,15 @@
   <div class="card-body">
 
 <p>
-  <strong>Description:</strong>
+  <strong>название:</strong>
   <%= @photo.description %>
+   <br>
+
+ <strong>почта:</strong>
+  <%= @photo.user.email if @photo.user %>
 </p>
 
-<%= link_to 'Edit', edit_photo_path(@photo) %> |
-<%= link_to 'Back', photos_path %>
+<% if @photo.user == current_user %><%= link_to 'Изменить', edit_photo_path(@photo) %> |<% end %>
+<%= link_to 'Назад', photos_path %>
  </div>
 </div>
