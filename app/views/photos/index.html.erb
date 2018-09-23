@@ -1,42 +1,17 @@
 <div class="jumbotron">
 
-
-
-<h1>Фото</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>название</th>
-       <th>почта</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
     <% @photos.each do |photo| %>
-      <tr>
-        <td><%= photo.description %></td>
-        <td><%= photo.user.email if photo.user %></td>
-        
-        <td><%= link_to 'Показать', photo %></td>
+        <%= image_tag photo.image.url (:medium) %>
+        <%= photo.description %>
+        <%= photo.user.email if photo.user %>        
+        <%= link_to 'Показать', photo %>
 
-        <td>
-          <% if photo.user == current_user %> <!-- проверяет принодлежность к пользоветелю и включает кнопку-->
-            <%= link_to 'Изменить', edit_photo_path(photo) %>
-          <% end %>
-        </td>
-
-        <td>
-           <% if photo.user == current_user %> <!-- проверяет принодлежность к пользоветелю и включает кнопку-->
-           <%= link_to 'Удалить', photo, method: :delete, data: { confirm: 'Are you sure?' } %>  
-          <% end %>
-        </td>
-
-      </tr>
+        <% if photo.user == current_user %> <!-- проверяет принодлежность к пользоветелю и включает кнопку-->
+            <%= link_to 'Изменить', edit_photo_path(photo) %>          
+            <%= link_to 'Удалить', photo, method: :delete, data: { confirm: 'Are you sure?' } %>  
+        <% end %>       
     <% end %>
-  </tbody>
-</table>
+ 
 
    <br>
     <% if user_signed_in? %>
