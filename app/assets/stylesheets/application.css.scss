@@ -3,6 +3,7 @@ $display4-size: 2.5rem;/*размер шрифта*/
 $jumbotron-bg: rgba(255,255,255, 0.1);/* цвет джимбатрона(квадратная херня по среди экрана)*/
 $card-cap-bg:  rgba(255,255,255, 0.4);/* цвет заголовка - входной карточки*/
 $card-bg: rgba(255,255,255, 0.6);/* цвет фона карточки*/
+$body-bg: #9ca4af; /* цвет фона вьюх index, show*/
 
 
 
@@ -27,9 +28,10 @@ $card-bg: rgba(255,255,255, 0.6);/* цвет фона карточки*/
 }
 
 .photo-form {
-    width: 50%;
+    display:inline-block;
     margin-left:auto;
     margin-right:auto;
+    text-align:left;
 }
 
 /*навбар от края до края*/
@@ -37,6 +39,7 @@ $card-bg: rgba(255,255,255, 0.6);/* цвет фона карточки*/
 
     padding-right: 0;
     padding-left: 0;
+    text-align:center;
 
 }
 
@@ -92,10 +95,4 @@ text-decoration: none;
 
 .landing-logotipe {
    font-size:2rem;
-}
-
-.fon-user {
-    background-size: cover;
-    height: 100vh;
-    background-color: rgba(#42f495, 0.5);
 }

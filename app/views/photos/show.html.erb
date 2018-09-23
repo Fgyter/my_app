@@ -3,16 +3,13 @@
   <div class="card-body">
 
 <p>
-<%= image_tag @photo.image.url %>
-  <strong>название:</strong>
-  <%= @photo.description %>
-   <br>
-
- <strong>почта:</strong>
+  <%= image_tag @photo.image.url (:large) %><br>
+  <strong><%= @photo.description %></strong> <br>
   <%= @photo.user.email if @photo.user %>
 </p>
 
-<% if @photo.user == current_user %><%= link_to 'Изменить', edit_photo_path(@photo) %> |<% end %>
+<% if @photo.user == current_user %><%= link_to 'Изменить', edit_photo_path(@photo) %> |
+<%= link_to 'Удалить', @photo, method: :delete, data: { confirm: 'Are you sure?' } %> | <% end %>
 <%= link_to 'Назад', photos_path %>
  </div>
 </div>
