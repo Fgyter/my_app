@@ -1,0 +1,17 @@
+<% if user_signed_in? %>
+
+   <%else%>
+
+     <div class="jumbotron">
+        <h1 class="display-4">Привет друзья!</h1>
+        <p class="lead">Размещайте свои скриншоты, рисунки, картины.</p>
+        <hr class="my-4">
+
+        <%= link_to "Создать аккаунт", new_user_registration_path, class: "btn btn-warning" %>
+        <%= link_to "Войти", new_user_session_path, class: "btn btn-primary" %>
+     </div>
+
+   <p class="main_part">приложение Rails v5.2.1</p>
+
+<%end%>
+

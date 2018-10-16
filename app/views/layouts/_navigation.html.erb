@@ -1,0 +1,76 @@
+ <% if user_signed_in? %>
+ <!--вошел в аккаунт 
+-->
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #255bb2;">
+<!-- бар навигации, собираеться в одну кнопку, расположен с лева, цвет бара-->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="container">
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+   <%= link_to "Главная страница", root_path, class:'navbar-brand text-logotipe' %>
+   <!--кнопки ссылки
+-->
+   <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+    
+
+      <li class="nav-item">
+       <%= link_to current_user.email, edit_user_registration_path, class:'nav-link' %>      
+      </li>
+      <!--кнопка изменения аккаунта, current_user.email = показывает мыло вошедшего пользователя -->
+      <li class="nav-item">
+       <%= link_to "Выйти", destroy_user_session_path, method: :delete, class:'nav-link' %>
+      </li>
+    </ul>
+   <!-- любой текст -->
+   <!-- <form class="form-inline my-2 my-lg-0">-->
+   <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+     <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+    <!--</form>
+   поиск в баре
+    -->
+   </div>
+  </div>
+</nav>
+
+<% else %>
+<!--главная страница сайта
+-->
+         <nav class="navbar navbar-expand-lg navbar-light bar-image">
+<!-- бар навигации, собираеться в одну кнопку, расположен с лева, цвет бара  style="background-color: #ffffff;-->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="container">
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+   <%= link_to "Главная страница", root_path, class:'navbar-brand text-logotipe landing-logotipe' %>
+   <!--кнопки ссылки mr-auto mt-2 mt-lg-0
+-->
+   <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+      <li class="nav-item">
+       <%= link_to "Фотографии", photos_path, class:'nav-link' %>      
+      </li>
+   
+      <li class="nav-item">
+       <%= link_to "О проекте", pages_about_path, class:'nav-link' %>      
+      </li>
+      <li class="nav-item">
+       <%= link_to "Войти", new_user_session_path, class:'nav-link' %>
+      </li>
+    </ul>
+   
+   <!-- <form class="form-inline my-2 my-lg-0">
+         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      поиск в баре
+    -->
+   </div>
+  </div>
+</nav>
+<%end%>

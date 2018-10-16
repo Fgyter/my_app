@@ -1,0 +1,22 @@
+<% @photos.each do |photo| %>
+    <div class="card photo-form">
+      <div class="card-body">
+        <%= image_tag photo.image.url (:medium) %><br>
+        <strong><%= photo.description %></strong><br>
+        <%= photo.user.email if photo.user %> <br>       
+        <%= link_to 'Показать', photo %> |
+
+        <% if photo.user == current_user %> <!-- проверяет принодлежность к пользоветелю и включает кнопку-->
+            <%= link_to 'Изменить', edit_photo_path(photo) %>  |        
+            <%= link_to 'Удалить', photo, method: :delete, data: { confirm: 'Are you sure?' } %>  
+        <% end %>  
+         </div> 
+        </div> 
+    <% end %>
+ 
+
+   <br>
+    <% if user_signed_in? %>
+      <%= link_to 'Новое фото', new_photo_path, class:"btn btn-primary" %>
+   <% end %>
+</div>
