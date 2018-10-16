@@ -44,6 +44,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'devise','~> 4.5.0'
 gem "paperclip", "~> 6.0.0"
 
+gem 'carrierwave', '~> 1.2.3'
+
 group :development do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
