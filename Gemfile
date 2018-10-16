@@ -40,7 +40,7 @@ gem 'nodejs-rails', '~> 0.0.1'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
-
+gem 'activeadmin'
 gem 'devise','~> 4.5.0'
 gem "paperclip", "~> 6.0.0"
 
