@@ -1,0 +1,11 @@
+h2
+  | Thanks, you paid 
+  strong
+    = number_to_currency(@photo.amount / 100)
+  | ! 
+h3
+  | Stripe Customer
+= debug @customer
+h3
+  | Stripe Charge
+= debug @charge

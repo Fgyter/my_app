@@ -1,0 +1,25 @@
+doctype html
+html
+  head
+    title
+      | MyApp
+    = csrf_meta_tags
+    = csp_meta_tag
+    meta[name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"]
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+  body
+    - if user_signed_in?
+      .container-fluid.container-bar
+
+    - else
+      .container-fluid.container-bar
+
+    = render "layouts/navigation"
+    .container
+      p.notice
+        = notice
+      p.alert
+        = alert
+      = yield
+  body
