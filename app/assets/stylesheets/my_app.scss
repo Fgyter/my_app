@@ -1,0 +1,69 @@
+@import url("https://fonts.googleapis.com/css?family=Comfortaa");
+$display4-size: 2.5rem;
+$jumbotron-bg: rgba(255,255,255, 0.3);
+$card-cap-bg:  rgba(255,255,255, 0.4);
+$card-bg: rgba(255,255,255, 0.6);
+$body-bg: #9ca4af; 
+@import "bootstrap";
+
+.container-background {
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-image: url(image_path('wowhorde.jpg'));
+}
+
+.devise-form {
+  width: 50%;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.photo-form {
+  display:inline-block;
+  margin-left:auto;
+  margin-right:auto;
+  text-align:left;
+}
+
+.container-bar{
+  padding-right: 0;
+  padding-left: 0;
+  text-align:center;
+}
+
+.bar-image {
+  background-color: rgba(255,255,255, 0.1);
+}
+ 
+$text-color: blue;
+.title {
+  color: $text-color;
+}
+
+.introduction{
+  color: $text-color;
+}
+
+.main_part{
+  color: $yellow;
+}
+
+.nav-landing:link,
+.nav-landing:visited {
+color: #2f9987;
+}
+
+.nav-landing:hover,
+.nav-landing:active {
+  color: #59ABE3;
+  text-decoration: none;
+}
+
+.text-logotipe{
+  font-family: 'Comfortaa', cursive;
+}
+
+.landing-logotipe {
+  font-size:1.2rem;
+}
