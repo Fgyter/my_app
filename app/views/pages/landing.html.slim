@@ -1,0 +1,13 @@
+- if user_signed_in?
+
+- else
+  .jumbotron
+    h1.display-4
+      | Привет друзья!
+    p.lead
+      | Размещайте свои скриншоты, рисунки, картины.
+    hr.my-4
+    = link_to "Создать аккаунт", new_user_registration_path, class: "btn btn-warning"
+    = link_to "Войти", new_user_session_path, class: "btn btn-primary"
+  p.main_part
+    | приложение Rails v5.2.1

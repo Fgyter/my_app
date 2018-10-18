@@ -1,0 +1,14 @@
+.card.devise-form
+  .card-header
+    h2
+      | Забыли пароль?
+  .card-body
+    = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+      = devise_error_messages!
+      .form-group
+        = f.label :email
+        br
+        = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
+      .actions
+        = f.submit "Отправить иснтрукцию по сбросу пароля", class:"btn btn-primary"
+    = render "devise/shared/links"

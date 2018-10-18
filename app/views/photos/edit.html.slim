@@ -1,0 +1,9 @@
+.card.photo-form
+  .card-header
+    h2
+      | Редоктировать фото
+  .card-body
+    = render 'form', photo: @photo
+    = link_to 'Show', @photo
+    |  | 
+    = link_to 'Back', photos_path

@@ -49,6 +49,9 @@ gem "fog-aws"
 
 gem 'stripe'
 
+gem 'html2slim', '~> 0.2.0'
+gem 'slim'
+
 group :development do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

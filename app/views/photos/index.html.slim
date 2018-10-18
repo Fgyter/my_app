@@ -1,0 +1,19 @@
+- @photos.each do |photo|
+  .card.photo-form
+    .card-body
+      = image_tag photo.image.url (:medium)
+      br
+      strong
+        = photo.description
+      br
+      = photo.user.email if photo.user
+      br
+      = link_to 'Показать', photo
+      |  | 
+      - if photo.user == current_user
+        = link_to 'Изменить', edit_photo_path(photo)
+        |  | 
+        = link_to 'Удалить', photo, method: :delete, data: { confirm: 'Are you sure?' }
+br
+- if user_signed_in?
+  = link_to 'Новое фото', new_photo_path, class:"btn btn-primary"
