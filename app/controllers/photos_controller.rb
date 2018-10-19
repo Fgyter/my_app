@@ -8,7 +8,7 @@ class PhotosController < ApplicationController
 # Update(обновление) - edit + update
 # Destroy(удаление) - destroy 
   def index # просмотр все экземпляры
-    @photos = Photo.all
+    @photos = Photo.order(id: :desc).page(params[:page])
     ###
     @amount = 500
     @description = 'Description of Charge'

@@ -52,6 +52,9 @@ gem 'stripe'
 gem 'html2slim', '~> 0.2.0'
 gem 'slim'
 
+gem 'kaminari'
+gem 'bootstrap4-kaminari-views'
+
 group :development do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

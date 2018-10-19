@@ -17,3 +17,6 @@
 br
 - if user_signed_in?
   = link_to 'Новое фото', new_photo_path, class:"btn btn-primary"
+
+= paginate @photos, theme: 'twitter-bootstrap-4',
+                   pagination_class: "pagination-lg"
