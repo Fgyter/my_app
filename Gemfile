@@ -57,6 +57,8 @@ gem 'bootstrap4-kaminari-views'
 
 gem 'ransack'
 
+gem 'aasm', '~> 4.11'
+
 group :development do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
