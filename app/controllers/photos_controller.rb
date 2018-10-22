@@ -2,39 +2,31 @@ class PhotosController < ApplicationController
   before_action :set_photo, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :owner, only: [:edit, :update, :destroy]
-# действия контроллера 7 - CRUD   :new, 
-# Create(Сздание) - new + create
-# Read(Просмотр) - show + index
-# Update(обновление) - edit + update
-# Destroy(удаление) - destroy 
-  def index # просмотр все экземпляры
+  def index
     @photos = Photo.order(id: :desc).page(params[:page])
-    ###
     @amount = 500
     @description = 'Description of Charge'
-    ###
+    @q = Photo.ransack(params[:q])
+  end   
+
+  def show
   end
 
-
-  def show #просмотр (один экземпляр)
-  end
-
-  def new # создание новой фото current_user.photos.build
+  def new 
     @photo = current_user.photos.build
   end
 
-  def edit # обновление - подгружает форму редакриторования
+  def edit
   end
 
-
-  def create # создание-добавление новой фото в базу данных
+  def create 
     @photo = current_user.photos.build(photo_params)
       if @photo.save
         redirect_to @photo, notice: 'Фото создано'
       else
         render :new
       end
-      ########
+      
       amount = 500
 
     @customer = Stripe::Customer.create(email:  params[:stripeEmail],
@@ -47,10 +39,9 @@ class PhotosController < ApplicationController
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to new_charge_path
-    ########
   end
 
-  def update # обновление
+  def update 
       if @photo.update(photo_params)
         redirect_to @photo, notice: 'Фото обновлено'
       else
@@ -58,7 +49,7 @@ class PhotosController < ApplicationController
       end
   end
 
-  def destroy # удаление
+  def destroy 
     @photo.destroy
       redirect_to photos_url, notice: 'Фото удалено' 
   end

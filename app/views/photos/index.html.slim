@@ -1,3 +1,4 @@
+= render 'search_form'
 - @photos.each do |photo|
   .card.photo-form
     .card-body
@@ -20,3 +21,5 @@ br
 
 = paginate @photos, theme: 'twitter-bootstrap-4',
                    pagination_class: "pagination-lg"
+
+
