@@ -1,30 +1,37 @@
 class Photo < ApplicationRecord
   include AASM
   aasm do
-    state :unverified, initial: true
-    state :verified
-    state :published
-    state :archived
-    state :rejected
+    state :unverified, initial: true    #непроверенный  
+    state :verified                     #проверенный
+    state :published                    #опубликованный
+    state :archived                     #архивируются
+    state :rejected                     #отвергнуто                 
+
     event :verify do
       transitions from: [:unverified], to: :verified
     end
+
     event :reject do
       transitions from: [:unverified], to: :rejected
     end
+
     event :reverify do
       transitions from: [:verified], to: :unverified
     end
+
     event :publish do
       transitions from: [:verified], to: :published
     end
+
     event :unpublish do
       transitions from: [:published], to: :verified
     end
+
     event :archive do
       transitions from: [:published, :verified, :unverified], to: :archived
     end
   end
+
 
 	mount_uploader :image, ImageUploader
 	belongs_to :user
