@@ -1,8 +1,7 @@
 class Photo < ApplicationRecord
   include AASM
-
   aasm do
-   state :unverified, initial: true
+    state :unverified, initial: true
     state :verified
     state :published
     state :archived

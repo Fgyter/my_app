@@ -26,12 +26,11 @@ class PhotosController < ApplicationController
       else
         render :new
       end
-      
-      amount = 500
+  return
+    amount = 500
 
     @customer = Stripe::Customer.create(email:  params[:stripeEmail],
                                        source: params[:stripeToken])
-
     @charge = Stripe::Charge.create(customer:    @customer.id,
                                     amount:      amount,
                                     description: 'Rails Stripe customer',
@@ -50,10 +49,11 @@ class PhotosController < ApplicationController
   end
 
   def destroy 
-    @photo.destroy
-      redirect_to photos_url, notice: 'Фото удалено' 
+    if @photo.destroy
+      redirect_to photos_path, notice: 'Фото удалено' 
   end
-
+end
+#photos_url
   private
 
     def owner      
