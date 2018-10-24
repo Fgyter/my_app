@@ -1,9 +1,11 @@
 ActiveAdmin.register Photo do
+  permit_params :description, :aasm_state
+
   show do
     attributes_table do
       row :description
       row :image do |photo|
-        image_tag ad.image.url
+      image_tag photo.image.url
       end
     end
     active_admin_comments
@@ -13,12 +15,11 @@ ActiveAdmin.register Photo do
     inputs 'Details' do
       input :description
       input :image
-      input :aasm_state, label: 'Вабрать статус', as: :select, collection: photo.aasm.states(permitted: true).map(&:name)
-      input :aasm_state, input_html: { disabled: true },label: 'Текущий статус'
+      input :aasm_state, label: 'Вабрать статус', as: :select, collection: [photo.aasm_state] + photo.aasm.states(permitted: true).map(&:name)
     end
     actions
   end
 end
 
 #f.object.aasm.states(permitted: true).map(&:name)
-#photo.aasm.states(permitted: true).map(&:name)
+#photo.aasm.states(permitted: true).map(&:name) [:verified, :archived, :rejected]

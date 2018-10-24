@@ -1,11 +1,11 @@
 class Photo < ApplicationRecord
   include AASM
   aasm do
-    state :unverified, initial: true    #непроверенный  
-    state :verified                     #проверенный
-    state :published                    #опубликованный
-    state :archived                     #архивируются
-    state :rejected                     #отвергнуто                 
+    state :unverified, initial: true     
+    state :verified                     
+    state :published                    
+    state :archived                    
+    state :rejected                                    
 
     event :verify do
       transitions from: [:unverified], to: :verified
