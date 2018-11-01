@@ -7,7 +7,9 @@
         = @photo.description        
       br
         = number_to_currency(@photo.price)
-      
+        br
+        = @photo.aasm_state
+
       = @photo.user.email if @photo.user
     - if @photo.user == current_user
       = link_to 'Изменить', edit_photo_path(@photo)
