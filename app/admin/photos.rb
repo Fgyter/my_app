@@ -1,5 +1,5 @@
 ActiveAdmin.register Photo do
-  permit_params :description, :aasm_state
+  permit_params :description, :aasm_state, :image
 
   show do
     attributes_table do
