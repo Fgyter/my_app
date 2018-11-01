@@ -48,8 +48,7 @@ ActiveRecord::Schema.define(version: 2018_11_01_093051) do
     t.integer "image_file_size"
     t.datetime "image_updated_at"
     t.string "aasm_state"
-    t.decimal "price"
-    t.index ["user_id"], name: "index_photos_on_user_id"
+    t.decimal "price", precision: 8, scale: 2
   end
 
   create_table "users", force: :cascade do |t|
