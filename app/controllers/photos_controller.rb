@@ -66,6 +66,6 @@ end
     end
 
     def photo_params
-      params.require(:photo).permit(:description, :image, :update)
+      params.require(:photo).permit(:description, :image, :update, :price)
     end
 end

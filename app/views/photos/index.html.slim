@@ -8,8 +8,11 @@
       strong
         = photo.description
       br
+        = number_to_currency(photo.price)
+      br
       = photo.user.email if photo.user
       br
+
       = link_to 'Показать', photo
       |  | 
       - if photo.user == current_user

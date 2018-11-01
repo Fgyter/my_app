@@ -4,8 +4,10 @@
       = image_tag @photo.image.url (:large)
       br
       strong
-        = @photo.description
+        = @photo.description        
       br
+        = number_to_currency(@photo.price)
+      
       = @photo.user.email if @photo.user
     - if @photo.user == current_user
       = link_to 'Изменить', edit_photo_path(@photo)
