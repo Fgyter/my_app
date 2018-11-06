@@ -46,7 +46,7 @@ class PhotosController < ApplicationController
     state = params[:state]
     if state
       redirect_to @photo
-        #render :show
+      #render :show
     elsif @photo.update(photo_params)
       redirect_to @photo, notice: 'Фото обновлено'
     else

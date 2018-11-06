@@ -1,4 +1,12 @@
 class Photo < ApplicationRecord
+  mount_uploader :image, ImageUploader
+
+  belongs_to :user
+  has_attached_file :image, styles: { large: "600x600>", medium: "300x300>", thumb: "100x100>" }
+
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+  validate :price_for_unverified
+
   include AASM
   aasm do
     state :unverified, initial: true     
@@ -32,9 +40,13 @@ class Photo < ApplicationRecord
     end
   end
 
+  private
 
-	mount_uploader :image, ImageUploader
-	belongs_to :user
-	has_attached_file :image, styles: { large: "600x600>", medium: "300x300>", thumb: "100x100>" }
-	validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+  def price_for_unverified
+    errors.add(:base, 'error text')
+    if price.presence?
+      f.object.aasm_state
+    end
+  end
+
 end
