@@ -3,7 +3,6 @@
 - @photos.each do |photo|
   .card.photo-form
     .card-body
-      = image_tag photo.image.url (:medium)
       br
       strong
         = photo.description
@@ -14,15 +13,18 @@
       = photo.user.email if photo.user
       br
 
-      = link_to 'Показать', photo
-      |  | 
       - if photo.user == current_user
+
+        = link_to 'В работу', photo_path(photo, state: 'published'), method: :patch
+        |  |    
+        = link_to 'Отменить', photo_path(photo, state: 'rejected'), method: :patch
+        |  | 
         = link_to 'Изменить', edit_photo_path(photo)
         |  | 
-        = link_to 'Удалить', photo, method: :delete, data: { confirm: 'Are you sure?' }
+        = link_to 'Удалить', photo_path(photo), method: :delete, data: { confirm: 'Are you sure?' }
 br
 - if user_signed_in?
-  = link_to 'Новое фото', new_photo_path, class:"btn btn-primary"
+  = link_to 'Новый заказ', new_photo_path, class:"btn btn-primary"
 
 = paginate @photos, theme: 'twitter-bootstrap-4',
                    pagination_class: "pagination-lg"

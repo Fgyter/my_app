@@ -2,6 +2,7 @@ class PhotosController < ApplicationController
   before_action :set_photo, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :owner, only: [:edit, :update, :destroy]
+
   def index
     @photos = Photo.order(id: :desc).page(params[:page])
     @amount = 500
@@ -40,12 +41,17 @@ class PhotosController < ApplicationController
     redirect_to photos_path
   end
 
-  def update 
-      if @photo.update(photo_params)
-        redirect_to @photo, notice: 'Фото обновлено'
-      else
-        render :edit
-      end
+  def update
+    # binding.pry
+    state = params[:state]
+    if state
+      redirect_to @photo
+        #render :show
+    elsif @photo.update(photo_params)
+      redirect_to @photo, notice: 'Фото обновлено'
+    else
+      render :edit
+    end
   end
 
   def destroy 
@@ -53,7 +59,7 @@ class PhotosController < ApplicationController
       redirect_to photos_path, notice: 'Фото удалено' 
   end
 end
-#photos_url
+
   private
 
     def owner      

@@ -7,10 +7,7 @@
       ul
         - photo.errors.full_messages.each do |message|
           li
-            = message
-  .form-group
-    = form.label :image
-    = form.file_field :image, class: "form-control"
+            = message  
   .form-group
     = form.label :description
     = form.text_field :description, class: "form-control"
