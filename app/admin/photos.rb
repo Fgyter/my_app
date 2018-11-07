@@ -12,7 +12,7 @@ ActiveAdmin.register Photo do
   end
 
   form do |f|
-    f.semantic_errors #*f.object.errors.keys
+    f.semantic_errors
     inputs 'Details' do
       input :description
       input :image

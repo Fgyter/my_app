@@ -11,32 +11,32 @@ class Photo < ApplicationRecord
   aasm do
     state :unverified, initial: true     
     state :verified                     
-    state :published                    
-    state :archived                    
-    state :rejected                                    
+    state :operation                    
+    state :payment                    
+    state :repeal                                    
 
     event :verify do
       transitions from: [:unverified], to: :verified
     end
 
-    event :reject do
-      transitions from: [:unverified], to: :rejected
+    event :repealy do
+      transitions from: [:unverified], to: :repeal
     end
 
     event :reverify do
       transitions from: [:verified], to: :unverified
     end
 
-    event :publish do
-      transitions from: [:verified], to: :published
+    event :operate do
+      transitions from: [:verified], to: :operation
     end
 
-    event :unpublish do
-      transitions from: [:published], to: :verified
+    event :unoperate do
+      transitions from: [:operation], to: :verified
     end
 
-    event :archive do
-      transitions from: [:published, :verified, :unverified], to: :archived
+    event :pay do
+      transitions from: [:operation], to: :payment
     end
   end
 

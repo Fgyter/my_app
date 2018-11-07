@@ -13,9 +13,7 @@
 
       - if photo.user == current_user
 
-        = link_to 'В работу', photo_path(photo, state: 'published'), method: :patch
-        |  |    
-        = link_to 'Отменить', photo_path(photo, state: 'rejected'), method: :patch
+        = link_to 'В работу', photo_path(photo, state: 'operation'), method: :patch
         |  | 
         = link_to 'Изменить', edit_photo_path(photo)
         |  | 

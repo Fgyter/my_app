@@ -42,23 +42,26 @@ class PhotosController < ApplicationController
   end
 
   def update
-    # binding.pry
-    state = params[:state]
-    if state
-      redirect_to @photo
-      #render :show
-    elsif @photo.update(photo_params)
-      redirect_to @photo, notice: 'Фото обновлено'
-    else
-      render :edit
-    end
+      #binding.pry
+      state = params[:state]
+      if state
+        if state == "verified" 
+          @photo.operate!
+
+        end
+          redirect_to @photo
+      elsif @photo.update(photo_params)
+        redirect_to @photo, notice: 'Фото обновлено'
+      else
+        render :edit
+      end
   end
 
   def destroy 
     if @photo.destroy
       redirect_to photos_path, notice: 'Фото удалено' 
+    end
   end
-end
 
   private
 
@@ -72,6 +75,6 @@ end
     end
 
     def photo_params
-      params.require(:photo).permit(:description, :image, :update, :price)
+      params.require(:photo).permit(:description, :image, :update, :price, :aasm_state, :state)
     end
 end
