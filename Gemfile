@@ -27,6 +27,7 @@ gem 'kaminari'
 gem 'bootstrap4-kaminari-views'
 gem 'ransack'
 gem 'aasm', '~> 4.11'
+gem 'rails-i18n'
 
 group :development do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

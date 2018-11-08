@@ -1,7 +1,9 @@
 ru:
   hello: 'Привет мир!'
   #login_to_account: 'Вход в аккаунт'
-
+  time:
+    formats:
+      long: "%Y-%m-%d %H:%M:%S"
   photos:
     show:
       to_change: 'Изменить'
