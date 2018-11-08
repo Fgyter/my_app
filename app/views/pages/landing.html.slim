@@ -2,11 +2,10 @@
 - else
   .jumbotron
     h1.display-4
-      | Hello friends!
+      = t('.hello_friends')
     p.lead
-      | Waiting for your orders pictures
+      | #{ t('.orders_pictures')}
     hr.my-4
-    = link_to "Registration", new_user_registration_path, class: "btn btn-warning"
-    = link_to "Login", new_user_session_path, class: "btn btn-primary"
+    = link_to t('.registration'), new_user_registration_path, class: "btn btn-warning"
+    = link_to t('.login'), new_user_session_path, class: "btn btn-primary"
   p.main_part
-    | my app Rails v5.2.1

@@ -1,0 +1,6 @@
+ru:
+  devise:
+    confirmations:
+      resend_instructions: 'Подтвердить инструкцию'
+    sessions:
+      login_to_account: 'Вход в аккаунт'

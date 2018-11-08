@@ -1,9 +1,8 @@
 .card.photo-form
   .card-header
     h2
-      | Edit order
+      |  #{ t('.change_order') }
   .card-body
     = render 'form', photo: @photo
-    = link_to 'Show', @photo
-    |  | 
-    = link_to 'Back', photos_path
+    | 
+    = link_to t('.back'), photos_path

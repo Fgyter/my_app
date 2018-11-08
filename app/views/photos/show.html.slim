@@ -11,11 +11,11 @@
 
       = @photo.user.email if @photo.user
       br
-      = link_to 'Edit', edit_photo_path(@photo)
+      = link_to t('.to_change'), edit_photo_path(@photo)
       |  | 
-      = link_to 'Delete', @photo, method: :delete, data: { confirm: 'Are you sure?' }
+      = link_to t('.remove'), @photo, method: :delete, data: { confirm: 'Are you sure?' }
       |  | 
-      = link_to 'Back', photos_path
+      = link_to t('.back'), photos_path
 = form_tag photos_path do
   article
     - if flash[:error].present?

@@ -1,0 +1,36 @@
+ru:
+  hello: 'Привет мир!'
+  #login_to_account: 'Вход в аккаунт'
+
+  photos:
+    show:
+      to_change: 'Изменить'
+      remove: 'Удалить'
+      back: 'Назад'
+    new:
+      to_produce_new_order: 'Создать новый заказ'
+      back: 'Назад'
+    index:
+      to_work: 'В работу'
+      to_change: 'Изменить'
+      remove: 'Удалить'
+      new_order: 'Новый заказ'    
+    edit:
+      change_order: 'Изменить заказ'
+      back: 'Назад'
+  pages:
+    landing:
+      hello_friends: Привет мои друзья!
+      orders_pictures: 'Заказывайте новые картины'
+      registration: 'Регистрация'
+      login: 'Вход'
+  layouts:
+    application:
+      my_app: 'Художник'
+    navigation:
+      home_page: 'Главная страница'
+      login: 'Вход'
+      admin: 'Админ'
+      about_the_project: 'О проекте'
+      logout: 'Выход'
+  
