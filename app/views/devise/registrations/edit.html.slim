@@ -1,7 +1,7 @@
 .card.devise-form
   .card-header
     h2
-      | Изменить данные
+      | To change the data
   .card-body
     = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
       = devise_error_messages!
@@ -16,13 +16,13 @@
       .field
         = f.label :password
         i
-          | (оставьте пустым, если не хотите менять пароль)
+          | (leave blank if you do not want to change the password)
         br
         = f.password_field :password, autocomplete: "new-password", class: "form-control"
         - if @minimum_password_length
           em
             = @minimum_password_length
-            |  минимум символов
+            |  minimym length
       .field
         = f.label :password_confirmation
         br
@@ -30,14 +30,14 @@
       .form-group
         = f.label :current_password
         i
-          | (введите текущий пароль)
+          | (enter the current password)
         br
         = f.password_field :current_password, autocomplete: "current-password", class: "form-control"
       .actions
-        = f.submit "Обновить", class:"btn btn-primary"
+        = f.submit "Update", class:"btn btn-primary"
     br
     h4
-      | Удалить аккаунт
+      | Delete account 
     p
-      = button_to "Удалить аккаунт", registration_path(resource_name), data: { confirm: "Вы уверены?" }, method: :delete, class:"btn btn-primary"
+      = button_to "Delete account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class:"btn btn-primary"
     = link_to "Back", :back

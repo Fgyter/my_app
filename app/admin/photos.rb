@@ -16,7 +16,7 @@ ActiveAdmin.register Photo do
     inputs 'Details' do
       input :description
       input :image
-      input :aasm_state, label: 'Вабрать статус', as: :select, 
+      input :aasm_state, label: 'Type status', as: :select, 
              collection: [f.object.aasm_state] + f.object.aasm.states(permitted: true).map(&:name)
       input :price
     end

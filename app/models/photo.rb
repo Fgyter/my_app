@@ -35,7 +35,7 @@ class Photo < ApplicationRecord
       transitions from: [:work], to: :verified
     end
 
-    event :pay do
+    event :to_pay do
       transitions from: [:work], to: :payment
     end
   end
