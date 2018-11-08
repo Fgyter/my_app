@@ -8,18 +8,17 @@
         = photo.description
       br
         = number_to_currency(photo.price)
-      = photo.user.email if photo.user
+        br
+          = photo.aasm_state
+        = photo.user.email if photo.user
       br
-
-      - if photo.user == current_user
-
-        = link_to 'В работу', photo_path(photo, state: 'operation'), method: :patch
+        = link_to 'В работу', photo_path(photo, state: 'work'), method: :patch if photo.aasm_state == 'verified'
         |  | 
         = link_to 'Изменить', edit_photo_path(photo)
         |  | 
         = link_to 'Удалить', photo_path(photo), method: :delete, data: { confirm: 'Are you sure?' }
 br
-- if user_signed_in?
+
   = link_to 'Новый заказ', new_photo_path, class:"btn btn-primary"
 
 = paginate @photos, theme: 'twitter-bootstrap-4',

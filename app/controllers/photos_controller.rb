@@ -4,7 +4,7 @@ class PhotosController < ApplicationController
   before_action :owner, only: [:edit, :update, :destroy]
 
   def index
-    @photos = Photo.order(id: :desc).page(params[:page])
+    @photos = current_user.photos.order(id: :desc).page(params[:page])
     @amount = 500
     @description = 'Description of Charge'
     @q = Photo.ransack(params[:q])
@@ -42,19 +42,18 @@ class PhotosController < ApplicationController
   end
 
   def update
-      #binding.pry
-      state = params[:state]
-      if state
-        if state == "verified" 
-          @photo.operate!
-
-        end
-          redirect_to @photo
-      elsif @photo.update(photo_params)
-        redirect_to @photo, notice: 'Фото обновлено'
-      else
-        render :edit
+   # binding.pry
+    state = params[:state]
+    if state
+      if state == "work" 
+        @photo.to_work!
       end
+      redirect_to @photo
+    elsif @photo.update(photo_params)
+      redirect_to @photo, notice: 'Фото обновлено'
+    else
+      render :edit
+    end
   end
 
   def destroy 
@@ -75,6 +74,6 @@ class PhotosController < ApplicationController
     end
 
     def photo_params
-      params.require(:photo).permit(:description, :image, :update, :price, :aasm_state, :state)
+      params.require(:photo).permit(:description, :image, :update, :price, :aasm_state)
     end
 end

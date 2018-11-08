@@ -11,7 +11,7 @@ class Photo < ApplicationRecord
   aasm do
     state :unverified, initial: true     
     state :verified                     
-    state :operation                    
+    state :work                    
     state :payment                    
     state :repeal                                    
 
@@ -27,16 +27,16 @@ class Photo < ApplicationRecord
       transitions from: [:verified], to: :unverified
     end
 
-    event :operate do
-      transitions from: [:verified], to: :operation
+    event :to_work do
+      transitions from: [:verified], to: :work
     end
 
     event :unoperate do
-      transitions from: [:operation], to: :verified
+      transitions from: [:work], to: :verified
     end
 
     event :pay do
-      transitions from: [:operation], to: :payment
+      transitions from: [:work], to: :payment
     end
   end
 

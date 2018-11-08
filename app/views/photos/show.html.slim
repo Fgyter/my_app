@@ -10,12 +10,12 @@
         = @photo.aasm_state
 
       = @photo.user.email if @photo.user
-    - if @photo.user == current_user
+      br
       = link_to 'Изменить', edit_photo_path(@photo)
       |  | 
       = link_to 'Удалить', @photo, method: :delete, data: { confirm: 'Are you sure?' }
       |  | 
-    = link_to 'Назад', photos_path
+      = link_to 'Назад', photos_path
 = form_tag photos_path do
   article
     - if flash[:error].present?
