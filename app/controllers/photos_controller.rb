@@ -43,15 +43,16 @@ class PhotosController < ApplicationController
 
   def update
     state = params[:state]
-     if state
-      if state == "work" 
-        @photo.to_work!
-      end
-      if state == "repeal"
-        @photo.repealy!
+    if @photo
+      case state
+        when "work"
+          @photo.to_work!
+        when "repeal"
+          @photo.repealy!
       end
       redirect_to @photo
-    elsif @photo.update(photo_params)
+    elsif 
+      @photo.update(photo_params)
       redirect_to @photo, notice: t(:photo_update)
     else
       render :edit
