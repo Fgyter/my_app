@@ -4,7 +4,7 @@
     h1.display-4
       = t('.hello_friends')
     p.lead
-      | #{ t('.orders_pictures')}
+      = t('.orders_pictures')
     hr.my-4
     = link_to t('.registration'), new_user_registration_path, class: "btn btn-warning"
     = link_to t('.login'), new_user_session_path, class: "btn btn-primary"

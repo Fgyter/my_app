@@ -3,6 +3,7 @@ ru:
   photo_update: 'Заказ обновлен'
   photo_delete: 'Заказ удален'
   you_do_not_photo: 'У вас нет разрешения на изменение заказа'
+  change_status: 'Поменяйте статус'
   time:
     formats:
       long: "%Y-%m-%d %H:%M:%S"

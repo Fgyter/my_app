@@ -1,7 +1,7 @@
 .card.photo-form
   .card-header
     h2
-      |  #{ t('.to_produce_new_order') }
+      = t('.to_produce_new_order')
   .card-body
     = render 'form', photo: @photo
     = link_to t('.back'), photos_path
