@@ -20,7 +20,7 @@ class Photo < ApplicationRecord
     end
 
     event :repealy do
-      transitions from: [:unverified], to: :repeal
+      transitions from: [:unverified, :verified], to: :repeal
     end
 
     event :reverify do

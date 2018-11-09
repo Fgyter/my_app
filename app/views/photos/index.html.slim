@@ -14,6 +14,9 @@
       br
         |  
         = link_to t('.to_work'), photo_path(photo, state: 'work'), method: :patch if photo.aasm_state == 'verified'
+      tl
+        |  
+        = link_to t('.repeal'), photo_path(photo, state: 'repeal'), method: :patch if photo.aasm_state == 'verified'
         |  | 
         = link_to t('.to_change'), edit_photo_path(photo)
         |  | 

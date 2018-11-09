@@ -23,7 +23,7 @@ class PhotosController < ApplicationController
   def create 
     @photo = current_user.photos.build(photo_params)
       if @photo.save
-        redirect_to @photo, notice: 'Photo create'
+        redirect_to @photo, notice: t(:photo_create)
       else
         render :new
       end
@@ -42,23 +42,25 @@ class PhotosController < ApplicationController
   end
 
   def update
-   # binding.pry
     state = params[:state]
-    if state
+     if state
       if state == "work" 
         @photo.to_work!
+      else 
+        state == "repeal"
+        @photo.repealy!
       end
       redirect_to @photo
     elsif @photo.update(photo_params)
-      redirect_to @photo, notice: 'Photo update'
+      redirect_to @photo, notice: t(:photo_update)
     else
       render :edit
     end
   end
 
-  def destroy 
+  def destroy
     if @photo.destroy
-      redirect_to photos_path, notice: 'Photo delete' 
+      redirect_to photos_path, notice: t(:photo_delete)
     end
   end
 
@@ -66,7 +68,7 @@ class PhotosController < ApplicationController
 
     def owner      
        @photo = current_user.photos.find_by(id: params[:id])
-         redirect_to photos_path, notice: "You do not have permission to modify this photo" if @photo.nil?
+         redirect_to photos_path, notice: t(:you_do_not_photo) if @photo.nil?
     end
     
     def set_photo
@@ -74,6 +76,6 @@ class PhotosController < ApplicationController
     end
 
     def photo_params
-      params.require(:photo).permit(:description, :image, :update, :price, :aasm_state)
+      params.require(:photo).permit(:description, :image, :update, :price, :aasm_state, :destroy)
     end
 end

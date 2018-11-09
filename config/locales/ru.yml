@@ -1,10 +1,15 @@
 ru:
-  hello: 'Привет мир!'
-  #login_to_account: 'Вход в аккаунт'
+  photo_create: 'Заказ создан'
+  photo_update: 'Заказ обновлен'
+  photo_delete: 'Заказ удален'
+  you_do_not_photo: 'У вас нет разрешения на изменение заказа'
   time:
     formats:
       long: "%Y-%m-%d %H:%M:%S"
   photos:
+    form:
+      description: 'Описание'
+      to_order: 'Заказать'
     show:
       to_change: 'Изменить'
       remove: 'Удалить'
@@ -16,7 +21,8 @@ ru:
       to_work: 'В работу'
       to_change: 'Изменить'
       remove: 'Удалить'
-      new_order: 'Новый заказ'    
+      new_order: 'Новый заказ'
+      repeal: 'Отменить'    
     edit:
       change_order: 'Изменить заказ'
       back: 'Назад'
