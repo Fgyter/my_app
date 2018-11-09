@@ -46,8 +46,8 @@ class PhotosController < ApplicationController
      if state
       if state == "work" 
         @photo.to_work!
-      else 
-        state == "repeal"
+      end
+      if state == "repeal"
         @photo.repealy!
       end
       redirect_to @photo

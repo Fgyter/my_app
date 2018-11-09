@@ -22,7 +22,8 @@ ru:
       to_change: 'Изменить'
       remove: 'Удалить'
       new_order: 'Новый заказ'
-      repeal: 'Отменить'    
+      repeal: 'Отменить'  
+      are_you_sure?: 'Вы уверенны?'  
     edit:
       change_order: 'Изменить заказ'
       back: 'Назад'
