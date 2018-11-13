@@ -1,5 +1,5 @@
 class PhotosController < ApplicationController
-  before_action :set_photo, only: [:show, :edit, :update, :destroy]
+  before_action :set_photo, only: [:show, :edit, :update, :destroy, :to_work, :to_cancel, :to_ready, :to_pay]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :owner, only: [:edit, :update, :destroy]
 
@@ -27,32 +27,45 @@ class PhotosController < ApplicationController
       else
         render :new
       end
-  return
-    amount = 500
+  end
 
-    @customer = Stripe::Customer.create(email:  params[:stripeEmail],
-                                       source: params[:stripeToken])
-    @charge = Stripe::Charge.create(customer:    @customer.id,
-                                    amount:      amount,
-                                    description: 'Rails Stripe customer',
-                                    currency:    'cad')
-  rescue Stripe::CardError => e
-    flash[:error] = e.message
-    redirect_to photos_path
+  def to_work
+    @photo.to_work! if !@photo.work?
+    redirect_to @photo
+  end
+
+  def to_cancel
+    @photo.to_cancel! if !@photo.cancel?
+    redirect_to @photo
+  end
+
+  def to_ready
+    @photo
+    redirect_to @photo  
+  end
+
+  def to_pay
+    @photo.to_pay!
+    @amount = 500
+      customer = Stripe::Customer.create(
+        :email => params[:stripeEmail],
+        :source  => params[:stripeToken]
+      )
+
+      charge = Stripe::Charge.create(
+        :customer    => customer.id,
+        :amount      => @amount,
+        :description => 'Rails Stripe customer',
+        :currency    => 'usd'
+      )
+
+    rescue Stripe::CardError => e
+      flash[:error] = e.message
+      redirect_to new_charge_path
   end
 
   def update
-    state = params[:state]
-    if @photo
-      case state
-        when "work"
-          @photo.to_work!
-        when "repeal"
-          @photo.repealy!
-      end
-      redirect_to @photo
-    elsif 
-      @photo.update(photo_params)
+    if @photo.update(photo_params)
       redirect_to @photo, notice: t(:photo_update)
     else
       render :edit

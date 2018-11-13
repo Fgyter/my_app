@@ -1,6 +1,7 @@
 .card.photo-form
   .card-body
     p
+      = image_tag @photo.image.url (:medium)
       br
       strong
         = @photo.description        
@@ -11,9 +12,12 @@
 
       = @photo.user.email if @photo.user
       br
-      = link_to t('.to_change'), edit_photo_path(@photo)
+      |
+      = link_to t('.payment'), to_pay_photo_path(@photo), method: :post if @photo.aasm_state == 'work_ready'
+      |  
+      = link_to t('.to_change'), edit_photo_path(@photo) if @photo.aasm_state == ['unverified', 'verified', 'work']
       |  | 
-      = link_to t('.remove'), @photo, method: :delete, data: { confirm: 'Are you sure?' }
+      = link_to t('.remove'), @photo, method: :delete, data: { confirm: t('.are_you_sure?') }
       |  | 
       = link_to t('.back'), photos_path
 = form_tag photos_path do
