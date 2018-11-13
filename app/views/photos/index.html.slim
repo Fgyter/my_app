@@ -3,26 +3,27 @@
 - @photos.each do |photo|
   .card.photo-form
     .card-body
-      = image_tag photo.image.url (:medium)
       br
       strong
         = photo.description
       br
         = number_to_currency(photo.price)
-      = photo.aasm_state
+        br
+          = photo.aasm_state
+        = photo.user.email if photo.user
       br
-      = photo.user.email if photo.user
-      br
-
-      = link_to 'Показать', photo
-      |  | 
-      - if photo.user == current_user
-        = link_to 'Изменить', edit_photo_path(photo)
+        |  
+        = link_to t('.to_work'), photo_path(photo, state: 'work'), method: :patch if photo.aasm_state == 'verified'
+      tl
+        |  
+        = link_to t('.repeal'), photo_path(photo, state: 'repeal'), method: :patch if photo.aasm_state == 'verified'
         |  | 
-        = link_to 'Удалить', photo, method: :delete, data: { confirm: 'Are you sure?' }
+        = link_to t('.to_change'), edit_photo_path(photo)
+        |  | 
+        = link_to t('.remove'), photo_path(photo), method: :delete, data: { confirm: t('.are_you_sure?') }
 br
-- if user_signed_in?
-  = link_to 'Новое фото', new_photo_path, class:"btn btn-primary"
+
+  = link_to t('.new_order'), new_photo_path, class:"btn btn-primary"
 
 = paginate @photos, theme: 'twitter-bootstrap-4',
                    pagination_class: "pagination-lg"

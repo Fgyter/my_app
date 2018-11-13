@@ -1,40 +1,48 @@
 class Photo < ApplicationRecord
+  mount_uploader :image, ImageUploader
+
+  belongs_to :user
+  has_attached_file :image, styles: { large: "600x600>", medium: "300x300>", thumb: "100x100>" }
+
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+  validate :price_for_unverified
+
   include AASM
   aasm do
     state :unverified, initial: true     
     state :verified                     
-    state :published                    
-    state :archived                    
-    state :rejected                                    
+    state :work                    
+    state :payment                    
+    state :repeal                                    
 
     event :verify do
       transitions from: [:unverified], to: :verified
     end
 
-    event :reject do
-      transitions from: [:unverified], to: :rejected
+    event :repealy do
+      transitions from: [:unverified, :verified], to: :repeal
     end
 
     event :reverify do
       transitions from: [:verified], to: :unverified
     end
 
-    event :publish do
-      transitions from: [:verified], to: :published
+    event :to_work do
+      transitions from: [:verified], to: :work
     end
 
-    event :unpublish do
-      transitions from: [:published], to: :verified
+    event :unoperate do
+      transitions from: [:work], to: :verified
     end
 
-    event :archive do
-      transitions from: [:published, :verified, :unverified], to: :archived
+    event :to_pay do
+      transitions from: [:work], to: :payment
     end
   end
 
+  private
 
-	mount_uploader :image, ImageUploader
-	belongs_to :user
-	has_attached_file :image, styles: { large: "600x600>", medium: "300x300>", thumb: "100x100>" }
-	validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+  def price_for_unverified
+    errors.add(:base, I18n.t(:change_status)) if price.present? && aasm_state == 'unverified'
+  end
 end

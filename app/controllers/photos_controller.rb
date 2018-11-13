@@ -2,8 +2,9 @@ class PhotosController < ApplicationController
   before_action :set_photo, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :owner, only: [:edit, :update, :destroy]
+
   def index
-    @photos = Photo.order(id: :desc).page(params[:page])
+    @photos = current_user.photos.order(id: :desc).page(params[:page])
     @amount = 500
     @description = 'Description of Charge'
     @q = Photo.ransack(params[:q])
@@ -22,7 +23,7 @@ class PhotosController < ApplicationController
   def create 
     @photo = current_user.photos.build(photo_params)
       if @photo.save
-        redirect_to @photo, notice: 'Фото создано'
+        redirect_to @photo, notice: t(:photo_create)
       else
         render :new
       end
@@ -40,25 +41,35 @@ class PhotosController < ApplicationController
     redirect_to photos_path
   end
 
-  def update 
-      if @photo.update(photo_params)
-        redirect_to @photo, notice: 'Фото обновлено'
-      else
-        render :edit
+  def update
+    state = params[:state]
+    if @photo
+      case state
+        when "work"
+          @photo.to_work!
+        when "repeal"
+          @photo.repealy!
       end
+      redirect_to @photo
+    elsif 
+      @photo.update(photo_params)
+      redirect_to @photo, notice: t(:photo_update)
+    else
+      render :edit
+    end
   end
 
-  def destroy 
+  def destroy
     if @photo.destroy
-      redirect_to photos_path, notice: 'Фото удалено' 
+      redirect_to photos_path, notice: t(:photo_delete)
+    end
   end
-end
-#photos_url
+
   private
 
     def owner      
        @photo = current_user.photos.find_by(id: params[:id])
-         redirect_to photos_path, notice: "У вас нет разрешения на изменение этой фотографии" if @photo.nil?
+         redirect_to photos_path, notice: t(:you_do_not_photo) if @photo.nil?
     end
     
     def set_photo
@@ -66,6 +77,6 @@ end
     end
 
     def photo_params
-      params.require(:photo).permit(:description, :image, :update, :price)
+      params.require(:photo).permit(:description, :image, :update, :price, :aasm_state, :destroy)
     end
 end
