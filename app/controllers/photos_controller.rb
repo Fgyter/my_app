@@ -5,7 +5,6 @@ class PhotosController < ApplicationController
 
   def index
     @photos = current_user.photos.order(id: :desc).page(params[:page])
-    @amount = 500
     @description = 'Description of Charge'
     @q = Photo.ransack(params[:q])
   end   
@@ -45,23 +44,18 @@ class PhotosController < ApplicationController
   end
 
   def to_pay
+    #binding.pry
     @photo.to_pay!
-    @amount = 500
-      customer = Stripe::Customer.create(
-        :email => params[:stripeEmail],
-        :source  => params[:stripeToken]
-      )
+      @customer = Stripe::Customer.create(email: params[:stripeEmail],
+                                        source: params[:stripeToken])
 
-      charge = Stripe::Charge.create(
-        :customer    => customer.id,
-        :amount      => @amount,
-        :description => 'Rails Stripe customer',
-        :currency    => 'usd'
-      )
-
+      @charge = Stripe::Charge.create(customer: @customer.id,
+                                      description: 'Rails Stripe customer',
+                                      currency: 'rub')
+     
     rescue Stripe::CardError => e
       flash[:error] = e.message
-      redirect_to new_charge_path
+      redirect_to @photo
   end
 
   def update
@@ -90,6 +84,6 @@ class PhotosController < ApplicationController
     end
 
     def photo_params
-      params.require(:photo).permit(:description, :image, :update, :price, :aasm_state, :destroy)
+      params.require(:photo).permit(:description, :image, :update, :price, :aasm_state)
     end
 end

@@ -40,6 +40,10 @@ class Photo < ApplicationRecord
     event :to_pay do
       transitions from: [:work_ready], to: :payment
     end
+
+    event :pay_to do
+      transitions from: [:payment], to: :work_ready
+    end
   end
 
   private
