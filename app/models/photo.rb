@@ -49,10 +49,10 @@ class Photo < ApplicationRecord
   private
 
   def image_for_work_ready
-    errors.add(:base, I18n.t(:change_status)) if image.present? && aasm_state == 'work'
+    errors.add(:base, I18n.t(:change_status_work)) if image.present? && aasm_state == 'work'
   end
 
   def price_for_unverified
-    errors.add(:base, I18n.t(:change_status)) if price.present? && aasm_state == 'unverified'
+    errors.add(:base, I18n.t(:change_status_verified)) if price.present? && aasm_state == 'unverified'
   end
 end
