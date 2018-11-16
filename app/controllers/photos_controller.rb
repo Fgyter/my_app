@@ -39,18 +39,18 @@ class PhotosController < ApplicationController
   end
 
   def to_pay
-    @photo.to_pay!
-      @customer = Stripe::Customer.create(email: params[:stripeEmail],
+    
+    @customer = Stripe::Customer.create(email: params[:stripeEmail],
                                         source: params[:stripeToken])
-
-      @charge = Stripe::Charge.create(customer: @customer.id,
-                                      amount: @amount,
-                                      description: 'Rails Stripe customer',
-                                      currency: 'rub')
-     
-    rescue Stripe::CardError => e
-      flash[:error] = e.message
-      redirect_to @photo
+    return redirect_to @photo if !@customer.present?
+    @charge = Stripe::Charge.create(customer: @customer.id,
+                                    amount: @photo.price * 100,
+                                    description: 'Rails Stripe customer',
+                                    currency: 'rub')
+    @photo.to_pay!
+  rescue Stripe::CardError => e
+    flash[:error] = e.message
+    redirect_to @photo
   end
 
   def update
