@@ -1,5 +1,5 @@
 class PhotosController < ApplicationController
-  before_action :set_photo, only: [:show, :edit, :update, :destroy, :to_work, :to_cancel, :to_ready, :to_pay]
+  before_action :set_photo, only: [:show, :edit, :update, :destroy, :to_work, :to_cancel, :to_pay]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :owner, only: [:edit, :update, :destroy]
 
@@ -39,7 +39,6 @@ class PhotosController < ApplicationController
   end
 
   def to_pay
-    
     @customer = Stripe::Customer.create(email: params[:stripeEmail],
                                         source: params[:stripeToken])
     return redirect_to @photo if !@customer.present?
