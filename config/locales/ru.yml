@@ -3,7 +3,8 @@ ru:
   photo_update: 'Заказ обновлен'
   photo_delete: 'Заказ удален'
   you_do_not_photo: 'У вас нет разрешения на изменение заказа'
-  change_status: 'Поменяйте статус'
+  change_status_work: 'Укажите что статус в работе'
+  change_status_verified: 'Укажите что статус проверен'
   time:
     formats:
       long: "%Y-%m-%d %H:%M:%S"
@@ -15,6 +16,9 @@ ru:
       to_change: 'Изменить'
       remove: 'Удалить'
       back: 'Назад'
+      are_you_sure?: 'Вы уверенны?'
+      payment: 'Оплатить'
+      payment_was_successful: 'Платеж прошел успешно'
     new:
       to_produce_new_order: 'Создать новый заказ'
       back: 'Назад'
@@ -23,8 +27,9 @@ ru:
       to_change: 'Изменить'
       remove: 'Удалить'
       new_order: 'Новый заказ'
-      repeal: 'Отменить'  
-      are_you_sure?: 'Вы уверенны?'  
+      cancel: 'Отменить'  
+      are_you_sure?: 'Вы уверенны?' 
+      to_show: 'Показать' 
     edit:
       change_order: 'Изменить заказ'
       back: 'Назад'
