@@ -1,7 +1,12 @@
 .card.photo-form
   .card-body
     p
-      = image_tag @photo.image.url (:medium)
+      - if @photo.aasm_state != 'payment'
+        = image_tag @photo.image.url (:medium)
+
+      - else @photo.aasm_state == 'payment'
+        = image_tag @photo.image.url
+
       br
       strong
         = @photo.description        
@@ -13,10 +18,11 @@
       = @photo.user.email if @photo.user
       br
       |
-      = form_tag to_pay_photo_path(@photo), method: :post do 
-      script.stripe-button data-amount=(@photo.price * 100) data-description=t('.payment_was_successful') data-key="#{Rails.configuration.stripe[:publishable_key]}" data-locale="auto" src="https://checkout.stripe.com/checkout.js"
-      |  
-      = link_to t('.to_change'), edit_photo_path(@photo) if @photo.aasm_state == ['unverified', 'verified', 'work']
+      - if @photo.aasm_state == 'work_ready'
+        = form_tag to_pay_photo_path(@photo), method: :post do 
+        script.stripe-button data-amount=(@photo.price) data-currency=('rub') data-description=t('.payment_was_successful') data-key="#{Rails.configuration.stripe[:publishable_key]}" data-locale="auto" src="https://checkout.stripe.com/checkout.js"
+      |
+      = link_to t('.to_change'), edit_photo_path(@photo) if @photo.aasm_state == 'unverified' || 'verified' || 'work'
       |  | 
       = link_to t('.remove'), @photo, method: :delete, data: { confirm: t('.are_you_sure?') }
       |  | 
