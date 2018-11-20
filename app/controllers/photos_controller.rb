@@ -43,10 +43,11 @@ class PhotosController < ApplicationController
                                         source: params[:stripeToken])
     return redirect_to @photo if !@customer.present?
     @charge = Stripe::Charge.create(customer: @customer.id,
-                                    amount: @photo.price * 100,
+                                    amount: (@photo.price * 100).to_i,
                                     description: 'Rails Stripe customer',
                                     currency: 'rub')
     @photo.to_pay!
+    redirect_to @photo
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to @photo
