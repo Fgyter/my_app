@@ -53,6 +53,6 @@ class Photo < ApplicationRecord
   end
 
   def price_for_unverified
-    errors.add(:base, I18n.t(:change_status_verified)) if price.present? && aasm_state == 'unverified'
+    errors.add(:base, I18n.t(:change_status_verified)) if aasm_state != 'unverified' && price.nil?
   end
 end
