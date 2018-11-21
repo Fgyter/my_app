@@ -9,6 +9,9 @@
           li
             = message  
   .form-group
+    = form.label :image
+    = form.file_field :image, class: "form-control"
+  .form-group
     = form.label t('.description')
     = form.text_field :description, class: "form-control"
   .actions
