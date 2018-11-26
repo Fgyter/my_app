@@ -21,6 +21,7 @@ class PhotosController < ApplicationController
 
   def create 
     @photo = current_user.photos.build(photo_params)
+    @photo.token = # ggggg
       if @photo.save
         redirect_to @photo, notice: t(:photo_create)
       else
@@ -65,6 +66,13 @@ class PhotosController < ApplicationController
     if @photo.destroy
       redirect_to photos_path, notice: t(:photo_delete)
     end
+  end
+
+  def ready_image 
+    # найти фото (по токену)
+    # отправить файл
+    # 
+
   end
 
   private

@@ -1,6 +1,8 @@
 class Photo < ApplicationRecord
   mount_uploader :image, ImageUploader
 
+  has_secure_token :token
+
   belongs_to :user
   has_attached_file :image, styles: { large: "600x600>", medium: "300x300", thumb: "100x100>" }
   has_attached_file :ready_image, styles: { large: "600x600>", medium: "300x300>", thumb: "100x100>" }
@@ -8,7 +10,6 @@ class Photo < ApplicationRecord
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
   validates_attachment_content_type :ready_image, content_type: /\Aimage\/.*\z/
   validate :price_for_unverified
-  validate :image_for_work_ready
 
   include AASM
   aasm do
@@ -49,10 +50,6 @@ class Photo < ApplicationRecord
   end
 
   private
-
-  def image_for_work_ready
-    errors.add(:base, I18n.t(:change_status_work)) if image.present? && aasm_state == 'work'
-  end
 
   def price_for_unverified
     errors.add(:base, I18n.t(:change_status_verified)) if aasm_state != 'unverified' && price.nil?
