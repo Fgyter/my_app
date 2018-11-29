@@ -30,6 +30,7 @@ ru:
       cancel: 'Отменить'  
       are_you_sure?: 'Вы уверенны?' 
       to_show: 'Показать' 
+      ready_image: 'Готовое фото'
     edit:
       change_order: 'Изменить заказ'
       back: 'Назад'

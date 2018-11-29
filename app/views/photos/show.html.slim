@@ -5,7 +5,7 @@
         = image_tag @photo.image.url (:medium)
 
       - else @photo.aasm_state == 'payment'
-        = image_tag @photo.ready_image.url
+        = image_tag @photo.ready_image.url (:large)
 
       br
       strong

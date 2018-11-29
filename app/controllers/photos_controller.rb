@@ -1,5 +1,5 @@
 class PhotosController < ApplicationController
-  before_action :set_photo, only: [:show, :edit, :update, :destroy, :to_work, :to_cancel, :to_pay]
+  before_action :set_photo, only: [:show, :edit, :update, :destroy, :to_work, :to_cancel, :to_pay, :ready_image]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :owner, only: [:edit, :update, :destroy]
 
@@ -21,12 +21,19 @@ class PhotosController < ApplicationController
 
   def create 
     @photo = current_user.photos.build(photo_params)
-    @photo.token = # ggggg
+      
       if @photo.save
         redirect_to @photo, notice: t(:photo_create)
       else
         render :new
       end
+  end
+
+  def ready_image 
+    #binding.pry
+    if @photo.token 
+      redirect_to @photo
+    end
   end
 
   def to_work
@@ -66,13 +73,6 @@ class PhotosController < ApplicationController
     if @photo.destroy
       redirect_to photos_path, notice: t(:photo_delete)
     end
-  end
-
-  def ready_image 
-    # найти фото (по токену)
-    # отправить файл
-    # 
-
   end
 
   private
