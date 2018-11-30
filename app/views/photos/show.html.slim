@@ -2,10 +2,10 @@
   .card-body
     p
       - if @photo.aasm_state != 'payment'
-        = image_tag @photo.image.url (:medium)
+        = image_tag @photo.image.url(:medium)
 
       - else @photo.aasm_state == 'payment'
-        = image_tag @photo.ready_image.url (:large)
+        = image_tag @photo.ready_image.url(:large)
 
       br
       strong

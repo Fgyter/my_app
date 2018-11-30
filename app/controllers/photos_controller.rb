@@ -30,9 +30,10 @@ class PhotosController < ApplicationController
   end
 
   def ready_image 
-    #binding.pry
     if @photo.token 
-      redirect_to @photo
+      send_file '/publik/system/photos/ready_image/to.jpg',
+                type: 'image/jpeg',
+                disposition: 'attachment'
     end
   end
 
