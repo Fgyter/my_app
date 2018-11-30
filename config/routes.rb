@@ -7,6 +7,8 @@ Rails.application.routes.draw do
       post :to_cancel
       post :to_ready
       post :to_pay
+    end
+    collection do
       post :ready_image
     end
   end

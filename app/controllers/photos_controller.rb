@@ -21,7 +21,6 @@ class PhotosController < ApplicationController
 
   def create 
     @photo = current_user.photos.build(photo_params)
-      
       if @photo.save
         redirect_to @photo, notice: t(:photo_create)
       else
@@ -30,11 +29,16 @@ class PhotosController < ApplicationController
   end
 
   def ready_image 
-    if @photo.token 
-      send_file '/publik/system/photos/ready_image/to.jpg',
-                type: 'image/jpeg',
-                disposition: 'attachment'
-    end
+    binding.pry
+    @photo = Photo.fine_by(token: params[:token])
+      if @photo
+        send_file '@photo.ready_image_url',
+                  type: 'image/jpeg',
+                  disposition: 'attachment'
+
+      else
+        errors.add(:base, I18n.t(:not_image))
+      end    
   end
 
   def to_work
@@ -84,7 +88,7 @@ class PhotosController < ApplicationController
     end
     
     def set_photo
-      @photo = Photo.find(params[:id])
+      @photo = Photo.find(params[:id], params[:token])
     end
 
     def photo_params
