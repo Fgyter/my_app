@@ -1,5 +1,5 @@
 class PhotosController < ApplicationController
-  before_action :set_photo, only: [:show, :edit, :update, :destroy, :to_work, :to_cancel, :to_pay, :ready_image]
+  before_action :set_photo, only: [:show, :edit, :update, :destroy, :to_work, :to_cancel, :to_pay]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :owner, only: [:edit, :update, :destroy]
 
@@ -29,11 +29,10 @@ class PhotosController < ApplicationController
   end
 
   def ready_image 
-    binding.pry
-    @photo = Photo.fine_by(token: params[:token])
+    @photo = Photo.find_by(token: params[:token])
       if @photo
-        send_file '@photo.ready_image_url',
-                  type: 'image/jpeg',
+        send_file @photo.ready_image.path,
+                  type: 'image/jpg',
                   disposition: 'attachment'
 
       else
@@ -88,7 +87,7 @@ class PhotosController < ApplicationController
     end
     
     def set_photo
-      @photo = Photo.find(params[:id], params[:token])
+      @photo = Photo.find(params[:id])
     end
 
     def photo_params
