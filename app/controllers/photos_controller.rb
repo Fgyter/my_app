@@ -31,10 +31,9 @@ class PhotosController < ApplicationController
   def ready_image 
     @photo = Photo.find_by(token: params[:token])
       if @photo
-        send_file @photo.ready_image.path,
-                  type: 'image/jpg',
-                  disposition: 'attachment'
-
+      send_file @photo.ready_image.path,
+                type: 'image/jpg',
+                disposition: 'attachment'
       else
         errors.add(:base, I18n.t(:not_image))
       end    

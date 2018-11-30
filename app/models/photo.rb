@@ -1,7 +1,6 @@
 class Photo < ApplicationRecord
   mount_uploader :image, ImageUploader
 
-  has_secure_token :token
   before_create :generate_token_image
 
   belongs_to :user
