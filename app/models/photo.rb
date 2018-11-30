@@ -1,7 +1,8 @@
 class Photo < ApplicationRecord
   mount_uploader :image, ImageUploader
 
-  before_create :generate_token_image
+  has_secure_token :token
+  #before_create :generate_token_image
 
   belongs_to :user
   has_attached_file :image, styles: { large: "600x600>", medium: "300x300", thumb: "100x100>" }
@@ -51,12 +52,12 @@ class Photo < ApplicationRecord
 
   private
 
-  def generate_token_image
-    loop do
-      self.token = SecureRandom.hex(3)
-      break if Photo.where(token: self.token).empty?
-    end
-  end
+  # def generate_token_image
+  #   loop do
+  #     self.token = SecureRandom.hex(3)
+  #     break if Photo.where(token: self.token).empty?
+  #   end
+  # end
 
   def price_for_unverified
     errors.add(:base, I18n.t(:change_status_verified)) if aasm_state != 'unverified' && price.nil?
