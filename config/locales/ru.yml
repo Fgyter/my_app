@@ -5,6 +5,7 @@ ru:
   you_do_not_photo: 'У вас нет разрешения на изменение заказа'
   change_status_work: 'Укажите что статус в работе'
   change_status_verified: 'Укажите что статус проверен'
+  not_image: 'Фото отсутствует'
   time:
     formats:
       long: "%Y-%m-%d %H:%M:%S"
@@ -19,6 +20,7 @@ ru:
       are_you_sure?: 'Вы уверенны?'
       payment: 'Оплатить'
       payment_was_successful: 'Платеж прошел успешно'
+      download_image: 'Скачать фото'
     new:
       to_produce_new_order: 'Создать новый заказ'
       back: 'Назад'
@@ -29,7 +31,7 @@ ru:
       new_order: 'Новый заказ'
       cancel: 'Отменить'  
       are_you_sure?: 'Вы уверенны?' 
-      to_show: 'Показать' 
+      to_show: 'Показать'
     edit:
       change_order: 'Изменить заказ'
       back: 'Назад'

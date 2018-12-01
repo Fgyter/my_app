@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_21_092914) do
+ActiveRecord::Schema.define(version: 2018_11_26_111650) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -51,10 +51,11 @@ ActiveRecord::Schema.define(version: 2018_11_21_092914) do
     t.decimal "price", precision: 8, scale: 2
     t.string "image"
     t.string "ready_image"
-    t.string "ready_photo_file_name"
-    t.string "ready_photo_content_type"
-    t.integer "ready_photo_file_size"
-    t.datetime "ready_photo_updated_at"
+    t.string "ready_image_file_name"
+    t.string "ready_image_content_type"
+    t.integer "ready_image_file_size"
+    t.datetime "ready_image_updated_at"
+    t.string "token"
     t.index ["user_id"], name: "index_photos_on_user_id"
   end
 

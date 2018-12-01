@@ -8,6 +8,9 @@ Rails.application.routes.draw do
       post :to_ready
       post :to_pay
     end
+    collection do
+      post :ready_image
+    end
   end
   devise_for :users
   root 'pages#landing'
