@@ -21,22 +21,22 @@ class PhotosController < ApplicationController
 
   def create 
     @photo = current_user.photos.build(photo_params)
-      if @photo.save
-        redirect_to @photo, notice: t(:photo_create)
-      else
-        render :new
-      end
+    if @photo.save
+      redirect_to @photo, notice: t(:photo_create)
+    else
+      render :new
+    end
   end
 
   def ready_image 
     @photo = Photo.find_by(token: params[:token])
-      if @photo
+    if @photo
       send_file @photo.ready_image.path,
                 type: 'image/jpg',
                 disposition: 'attachment'
-      else
-        errors.add(:base, I18n.t(:not_image))
-      end    
+    else
+      errors.add(:base, I18n.t(:not_image))
+    end    
   end
 
   def to_work
@@ -80,16 +80,16 @@ class PhotosController < ApplicationController
 
   private
 
-    def owner      
-       @photo = current_user.photos.find_by(id: params[:id])
-         redirect_to photos_path, notice: t(:you_do_not_photo) if @photo.nil?
-    end
-    
-    def set_photo
-      @photo = Photo.find(params[:id])
-    end
+  def owner      
+    @photo = current_user.photos.find_by(id: params[:id])
+      redirect_to photos_path, notice: t(:you_do_not_photo) if @photo.nil?
+  end
+  
+  def set_photo
+    @photo = Photo.find(params[:id])
+  end
 
-    def photo_params
-      params.require(:photo).permit(:description, :image, :update, :price, :aasm_state, :ready_image)
-    end
+  def photo_params
+    params.require(:photo).permit(:description, :image, :update, :price, :aasm_state, :ready_image)
+  end
 end
