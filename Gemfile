@@ -18,7 +18,8 @@ gem 'bootstrap', '~> 4.1.3'
 gem 'activeadmin'
 gem 'devise','~> 4.5.0'
 gem "paperclip", "~> 6.0.0"
-gem 'aws-sdk', '~> 2.3'
+# gem 'aws-sdk', '~> 2.3'
+gem 'aws-sdk-s3'
 gem 'carrierwave', '~> 1.2.3'
 gem "fog-aws"
 gem 'stripe'
