@@ -3,7 +3,7 @@
 - @photos.each do |photo|
   .card.photo-form
     .card-body
-      = image_tag photo.image.url (:medium)
+      = image_tag photo.image.url(:little)
       br
       strong
         = photo.description
